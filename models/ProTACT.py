@@ -48,7 +48,7 @@ def cosine_sim(trait1, trait2):
     cos_similarity = tf.reduce_sum(tf.multiply(normalize_x, normalize_y))
     return cos_similarity
     
-def ts_loss(y_true, y_pred):
+def trait_sim_loss(y_true, y_pred):
     mask_value = -1
     mask = K.cast(K.not_equal(y_true, mask_value), K.floatx())
     
@@ -58,7 +58,7 @@ def ts_loss(y_true, y_pred):
     
     sim_loss = 0.0
     cnt = 0.0
-    trait_sim_loss = 0.
+    ts_loss = 0.
     #trait_num = y_true.shape[1]
     trait_num = 9
     print('trait num: ', trait_num)
@@ -71,8 +71,8 @@ def ts_loss(y_true, y_pred):
                             lambda: tf.add(sim_loss, 0))
             cnt = tf.cond(corr>=0.7, lambda: tf.add(cnt, 1), 
                             lambda: tf.add(cnt, 0))
-    trait_sim_loss = tf.cond(cnt > 0, lambda: sim_loss/cnt, lambda: trait_sim_loss+0)
-    return trait_sim_loss
+    ts_loss = tf.cond(cnt > 0, lambda: sim_loss/cnt, lambda: ts_loss+0)
+    return ts_loss
     
 def masked_loss_function(y_true, y_pred):
     mask_value = -1
@@ -83,7 +83,7 @@ def masked_loss_function(y_true, y_pred):
 def total_loss(y_true, y_pred):
     alpha = 0.7
     mse_loss = masked_loss_function(y_true, y_pred)
-    ts_loss = ts_loss(y_true, y_pred)
+    ts_loss = trait_sim_loss(y_true, y_pred)
     return alpha * mse_loss + (1-alpha) * ts_loss
 
 def build_ProTACT(pos_vocab_size, vocab_size, maxnum, maxlen, readability_feature_count,
