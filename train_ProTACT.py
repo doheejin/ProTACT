@@ -30,7 +30,7 @@ def main():
     parser.add_argument('--test_prompt_id', type=int, default=1, help='prompt id of test essay set')
     parser.add_argument('--seed', type=int, default=12, help='set random seed')
     parser.add_argument('--model_name', type=str,
-                        choices=['attribute_attention'],
+                        choices=['ProTACT'],
                         help='name of model')
     parser.add_argument('--num_heads', type=int, default=2, help='set the number of heads in Multihead Attention')
     parser.add_argument('--features_path', type=str, default='data/hand_crafted_v3.csv')
