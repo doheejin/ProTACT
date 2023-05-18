@@ -2,7 +2,7 @@
 
 This repository is the implementation of the ProTACT architecture, introduced in the paper, **Prompt- and Trait Relation-aware Cross-prompt Essay Trait Scoring** (ACL Findings 2023).
 
-> The code is based on the open-sourced code, [https://github.com/robert1ridley/cross-prompt-trait-scoring](https://github.com/robert1ridley/cross-prompt-trait-scoring) (Ridley, 2021).
+> The code is based on the open code, [https://github.com/robert1ridley/cross-prompt-trait-scoring](https://github.com/robert1ridley/cross-prompt-trait-scoring) (Ridley, 2021).
 
 ## Package Requirements
 
