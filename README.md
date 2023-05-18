@@ -17,14 +17,13 @@ Install below packages in your virtual environment before running the code.
 ## Download GloVe
 
 For prompt word embedding, we use the pretrained GloVe embedding.
-- Go to `https://nlp.stanford.edu/projects/glove/` and download `glove.6B.50d.txt`.
+- Go to [https://nlp.stanford.edu/projects/glove/](https://nlp.stanford.edu/projects/glove/) and download `glove.6B.50d.txt`.
 - Put downloaded file in the `embeddings` directory.
 
-## Training 
-### baseline model (Ridley, 2021)
-- Run `./train_CTS.sh`
+## Run ProTACT
+- `bash ./train_ProTACT.sh`
 
-### ProTACT
-- Run `./train_ProTACT.sh`
+## Run baseline (Ridley, 2021)
+- `bash ./train_CTS.sh`
 
 This bash script will run each model 5 times with different seeds ([12, 22, 32, 42, 52]).
