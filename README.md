@@ -23,6 +23,7 @@ For prompt word embedding, we use the pretrained GloVe embedding.
 ## Run ProTACT (Do, 2023)
 This bash script will run each model 5 times with different seeds ([12, 22, 32, 42, 52]).
 - `bash ./train_ProTACT.sh`
+
 Note that every run does not produce the same results due to the random elements.
 
 ## Run baseline (Ridley, 2021)
