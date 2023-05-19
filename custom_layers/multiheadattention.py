@@ -48,6 +48,5 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         # (batch_size, seq_len, embedding_dim)
         concat_attention = tf.reshape(scaled_attention, (batch_size, -1, self.embedding_dim))
         outputs = self.dense(concat_attention)
-        #outputs = K.sum(outputs, axis=1) # 1011 추가
         return outputs
 
