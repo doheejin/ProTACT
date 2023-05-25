@@ -128,8 +128,11 @@ def build_ProTACT(pos_vocab_size, vocab_size, maxnum, maxlen, readability_featur
     # add word + pos embedding
     prompt_emb = tf.keras.layers.Add()([prompt_maskedout, prompt_pos_maskedout])
     
-    prompt_zcnn = layers.Conv1D(cnn_filters, cnn_kernel_size, padding='valid')(prompt_emb)
-    prompt_avg_zcnn = Attention()(prompt_zcnn)
+    prompt_drop_x = layers.Dropout(dropout_prob, name='prompt_drop_x')(prompt_emb)
+    prompt_resh_W = layers.Reshape((maxnum, maxlen, embedding_dim), name='prompt_resh_W')(prompt_drop_x)
+    prompt_zcnn = layers.TimeDistributed(layers.Conv1D(cnn_filters, cnn_kernel_size, padding='valid'), name='prompt_zcnn')(prompt_resh_W)
+    prompt_avg_zcnn = layers.TimeDistributed(Attention(), name='prompt_avg_zcnn')(prompt_zcnn)
+    
     prompt_MA_list = MultiHeadAttention(100, num_heads)(prompt_avg_zcnn)
     prompt_MA_lstm_list = layers.LSTM(lstm_units, return_sequences=True)(prompt_MA_list) 
     prompt_avg_MA_lstm_list = Attention()(prompt_MA_lstm_list)
