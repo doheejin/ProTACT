@@ -44,6 +44,8 @@ For prompt word embedding, we use the pretrained GloVe embedding.
 This bash script will run each model 5 times with different seeds ([12, 22, 32, 42, 52]).
 - `bash ./train_ProTACT.sh`
 
+* Topic-coherence features are included in the `data/LDA/hand_crafted_final_{prompt}.csv` file as the 'highest_topic' column.
+
 Note that every run does not produce the same results due to the random elements.
 
 ## Run baseline (Ridley, 2021)
